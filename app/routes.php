@@ -15,3 +15,6 @@ Route::get('/', function()
 {
 	return View::make('hello');
 });
+
+Route::get('static_page/home', 'StaticPageController@home');
+Route::get('static_page/help', 'StaticPageController@help');
