@@ -10,4 +10,9 @@ class StaticPageController extends \BaseController
     {
         return View::make('static_page.help');
     }
+
+    function about()
+    {
+        return View::make('static_page.about');
+    }
 }
