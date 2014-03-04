@@ -8,3 +8,4 @@ composer.lock
 Thumbs.db
 app/tests/_log/
 *.sw[nop]
+node_modules/
