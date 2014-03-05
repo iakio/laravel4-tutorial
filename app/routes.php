@@ -19,3 +19,4 @@ Route::get('/', function()
 Route::get('static_page/home', 'StaticPageController@home');
 Route::get('static_page/help', 'StaticPageController@help');
 Route::get('static_page/about', 'StaticPageController@about');
+Route::get('static_page/contact', 'StaticPageController@contact');

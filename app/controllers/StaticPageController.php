@@ -15,4 +15,9 @@ class StaticPageController extends \BaseController
     {
         return View::make('static_page.about');
     }
+
+    function contact()
+    {
+        return View::make('static_page.contact');
+    }
 }

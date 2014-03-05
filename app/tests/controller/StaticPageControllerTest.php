@@ -46,4 +46,15 @@ class StaticPageControllerTest extends TestCase
         $this->assertEquals('Laravel4 Tutorial Sample App | About', $crawler->filter('title')->text());
     }
 
+    function testContactPageShouldHaveTheContentContact()
+    {
+        $response = $this->call('GET', 'static_page/contact');
+        $this->assertContains('Contact', $response->getContent());
+    }
+
+    function testContactPageShouldHaveTheTitleContact()
+    {
+        $crawler = $this->client->request('GET', 'static_page/contact');
+        $this->assertEquals('Laravel4 Tutorial Sample App | Contact', $crawler->filter('title')->text());
+    }
 }
