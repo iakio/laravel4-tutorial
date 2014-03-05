@@ -7,10 +7,19 @@ class StaticPageControllerTest extends TestCase
         $this->assertContains('Sample App', $response->getContent());
     }
 
-    function testHomePageShouldHaveTheTitleHome()
+    function testHomePageShouldHaveTheBaseTitle()
     {
         $crawler = $this->client->request('GET', 'static_page/home');
-        $this->assertEquals('Laravel4 Tutorial Sample App | Home', $crawler->filter('title')->text());
+        $this->assertEquals('Laravel4 Tutorial Sample App', $crawler->filter('title')->text());
+    }
+
+    function testHomePageShouldNotHaveACustomPageTitle()
+    {
+        $crawler = $this->client->request('GET', 'static_page/home');
+        $this->assertThat(
+            $crawler->filter('title')->text(),
+            $this->logicalNot($this->stringContains('| Home'))
+        );
     }
 
     function testHelpPageShouldHaveTheContentHelp()

@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
     <head>
-        <title>Laravel4 Tutorial Sample App | @yield('title')</title>
+        <title>{{ HTML::full_title(@fetch('title')) }}</title>
     </head>
     <body>
         <div class="container">
