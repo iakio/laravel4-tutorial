@@ -11,12 +11,7 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
-
-Route::get('static_page/home', 'StaticPageController@home');
-Route::get('static_page/help', 'StaticPageController@help');
-Route::get('static_page/about', 'StaticPageController@about');
-Route::get('static_page/contact', 'StaticPageController@contact');
+Route::get('/'       , ['as' => 'root_path'    , 'uses' => 'StaticPageController@home']);
+Route::get('help'    , ['as' => 'help_path'    , 'uses' => 'StaticPageController@help']);
+Route::get('about'   , ['as' => 'about_path'   , 'uses' => 'StaticPageController@about']);
+Route::get('contact' , ['as' => 'contact_path' , 'uses' => 'StaticPageController@contact']);
