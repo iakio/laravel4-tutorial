@@ -12,6 +12,7 @@
 */
 
 Route::get('/'       , ['as' => 'root_path'    , 'uses' => 'StaticPageController@home']);
+Route::get('signup'  , ['as' => 'signup_path'  , 'uses' => 'UserController@create']);
 Route::get('help'    , ['as' => 'help_path'    , 'uses' => 'StaticPageController@help']);
 Route::get('about'   , ['as' => 'about_path'   , 'uses' => 'StaticPageController@about']);
 Route::get('contact' , ['as' => 'contact_path' , 'uses' => 'StaticPageController@contact']);

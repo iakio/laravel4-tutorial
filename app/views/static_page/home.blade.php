@@ -10,7 +10,7 @@
     sample application.
   </h2>
   
-  {{ link_to("#", "Sign up now!", ["class" => "btn btn-large btn-primary"]) }}
+  {{ link_to_route("signup_path", "Sign up now!", ["class" => "btn btn-large btn-primary"]) }}
 </div>
 
 <a href="http://rubyonrails.org">{{ HTML::image("images/rails.png", "Rails") }}</a>
