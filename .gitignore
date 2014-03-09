@@ -9,3 +9,4 @@ Thumbs.db
 app/tests/_log/
 *.sw[nop]
 node_modules/
+app/database/*.sqlite
