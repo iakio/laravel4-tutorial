@@ -1,60 +1,84 @@
 <?php
 class StaticPageControllerTest extends TestCase
 {
-    function testHomePageShouldHaveTheContentSampleApp()
+    /** @test */
+    function visitHomePage()
     {
-        $response = $this->route('GET', 'root_path');
-        $this->assertContains('Sample App', $response->getContent());
+        return $this->client->request('GET', URL::route('root_path'));
     }
 
-    function testHomePageShouldHaveTheBaseTitle()
+    /** @depends visitHomePage */
+    function testHomePageShouldHaveTheContentSampleApp($crawler)
     {
-        $crawler = $this->client->request('GET', URL::route('root_path'));
-        $this->assertEquals('Laravel4 Tutorial Sample App', $crawler->filter('title')->text());
+        $this->assertContains('Sample App', $crawler->text());
     }
 
-    function testHomePageShouldNotHaveACustomPageTitle()
+    /** @depends visitHomePage */
+    function testHomePageShouldHaveTheBaseTitle($crawler)
     {
-        $crawler = $this->client->request('GET', URL::route('root_path'));
+        $this->assertEquals(HTML::full_title(''), $crawler->filter('title')->text());
+    }
+
+    /** @depends visitHomePage */
+    function testHomePageShouldNotHaveACustomPageTitle($crawler)
+    {
         $this->assertThat(
             $crawler->filter('title')->text(),
             $this->logicalNot($this->stringContains('| Home'))
         );
     }
 
-    function testHelpPageShouldHaveTheContentHelp()
+    /** @test */
+    function visitHelpPage()
     {
-        $response = $this->route('GET', 'help_path');
-        $this->assertContains('Help', $response->getContent());
+        return $this->client->request('GET', URL::route('help_path'));
     }
 
-    function testHelpPageShouldHaveTheTitleHelp()
+    /** @depends visitHelpPage */
+    function testHelpPageShouldHaveTheContentHelp($crawler)
     {
-        $crawler = $this->client->request('GET', URL::route('help_path'));
-        $this->assertEquals('Laravel4 Tutorial Sample App | Help', $crawler->filter('title')->text());
+        $this->assertContains('Help', $crawler->text());
     }
 
-    function testAboutPageShouldHaveTheContentAboutUs()
+    /** @depends visitHelpPage */
+    function testHelpPageShouldHaveTheTitleHelp($crawler)
     {
-        $response = $this->route('GET', 'about_path');
-        $this->assertContains('About Us', $response->getContent());
+        $this->assertEquals(HTML::full_title('Help'), $crawler->filter('title')->text());
     }
 
-    function testAboutPageShouldHaveTheTitleAboutUs()
+    /** @test */
+    function visitAboutPage()
     {
-        $crawler = $this->client->request('GET', URL::route('about_path'));
-        $this->assertEquals('Laravel4 Tutorial Sample App | About', $crawler->filter('title')->text());
+        return $this->client->request('GET', URL::route('about_path'));
     }
 
-    function testContactPageShouldHaveTheContentContact()
+    /** @depends visitAboutPage */
+    function testAboutPageShouldHaveTheContentAboutUs($crawler)
     {
-        $response = $this->route('GET', 'contact_path');
-        $this->assertContains('Contact', $response->getContent());
+        $this->assertContains('About Us', $crawler->text());
     }
 
-    function testContactPageShouldHaveTheTitleContact()
+    /** @depends visitAboutPage */
+    function testAboutPageShouldHaveTheTitleAboutUs($crawler)
     {
-        $crawler = $this->client->request('GET', URL::route('contact_path'));
-        $this->assertEquals('Laravel4 Tutorial Sample App | Contact', $crawler->filter('title')->text());
+        $this->assertEquals(HTML::full_title('About'), $crawler->filter('title')->text());
+    }
+
+    /** @test */
+    function visitContactPage()
+    {
+        return $this->client->request('GET', URL::route('contact_path'));
+    }
+
+    /** @depends visitContactPage */
+    function testContactPageShouldHaveTheContentContact($crawler)
+    {
+        $this->assertContains('Contact', $crawler->text());
+    }
+
+    /** @depends visitContactPage */
+    function testContactPageShouldHaveTheTitleContact($crawler)
+    {
+        $this->assertEquals(HTML::full_title('Contact'), $crawler->filter('title')->text());
     }
 }
